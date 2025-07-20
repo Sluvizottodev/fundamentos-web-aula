@@ -7,54 +7,78 @@ const searchInput = document.querySelector("#searchInput");
 let todosOsFilmes = [];
 
 fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR&page=1`)
-    .then(response => response.json())
-    .then(data => {
-        todosOsFilmes = data.results;
-        renderFilmes(todosOsFilmes);
-    })
-    .catch(error => console.error('Erro ao buscar filmes:', error));
+  .then(res => res.json())
+  .then(data => {
+    todosOsFilmes = data.results;
+    renderFilmes(todosOsFilmes);
+  })
+  .catch(err => console.error('Erro ao buscar filmes:', err));
+
+function formatarData(data) {
+  const date = new Date(data);
+  return date.toLocaleDateString('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  });
+}
 
 function renderFilmes(filmes) {
-    result.innerHTML = "";
-    filmes.forEach(filme => {
-        const filmeContainer = document.createElement("div");
-        filmeContainer.classList.add("filme");
+  result.innerHTML = "";
+  filmes.forEach(filme => {
+    const container = document.createElement("div");
+    container.classList.add("filme");
 
-        const imagem = document.createElement("img");
-        imagem.src = IMG_URL + filme.poster_path;
-        imagem.alt = filme.title;
-        imagem.classList.add("filme-imagem");
+    const imagem = document.createElement("img");
+    imagem.src = IMG_URL + filme.poster_path;
+    imagem.alt = `Cartaz do filme ${filme.title}`;
+    imagem.classList.add("filme-imagem");
 
-        const infoContainer = document.createElement("div");
-        infoContainer.classList.add("filme-info");
+    const info = document.createElement("div");
+    info.classList.add("filme-info");
 
-        const titulo = document.createElement("h2");
-        titulo.textContent = filme.title;
+    const titulo = document.createElement("h2");
+    titulo.textContent = filme.title;
 
-        const resumo = document.createElement("p");
-        resumo.textContent = filme.overview || "Sem descrição disponível.";
+    const resumo = document.createElement("p");
+    let textoOriginal = filme.overview || "Sem descrição disponível.";
+    if (textoOriginal.length > 150) {
+      const textoCortado = textoOriginal.substring(0, 150) + "...";
+      resumo.innerHTML = textoCortado;
 
-        const nota = document.createElement("p");
-        nota.innerHTML = `Nota: <strong>${filme.vote_average}</strong> ⭐`;
+      const botao = document.createElement("button");
+      botao.textContent = "ver mais";
+      botao.classList.add("ver-mais");
+      botao.addEventListener("click", () => {
+        resumo.textContent = textoOriginal;
+      });
 
-        const dataLancamento = document.createElement("p");
-        dataLancamento.textContent = `Lançamento: ${filme.release_date}`;
+      resumo.appendChild(botao);
+    } else {
+      resumo.textContent = textoOriginal;
+    }
 
-        infoContainer.appendChild(titulo);
-        infoContainer.appendChild(resumo);
-        infoContainer.appendChild(nota);
-        infoContainer.appendChild(dataLancamento);
+    const nota = document.createElement("p");
+    nota.innerHTML = `<span class="nota">⭐ ${filme.vote_average}</span>`;
 
-        filmeContainer.appendChild(imagem);
-        filmeContainer.appendChild(infoContainer);
-        result.appendChild(filmeContainer);
-    });
+    const dataLancamento = document.createElement("p");
+    dataLancamento.textContent = `Lançamento: ${formatarData(filme.release_date)}`;
+
+    info.appendChild(titulo);
+    info.appendChild(resumo);
+    info.appendChild(nota);
+    info.appendChild(dataLancamento);
+
+    container.appendChild(imagem);
+    container.appendChild(info);
+    result.appendChild(container);
+  });
 }
 
 searchInput.addEventListener("input", () => {
-    const termo = searchInput.value.toLowerCase();
-    const filtrados = todosOsFilmes.filter(filme =>
-        filme.title.toLowerCase().includes(termo)
-    );
-    renderFilmes(filtrados);
+  const termo = searchInput.value.toLowerCase();
+  const filtrados = todosOsFilmes.filter(filme =>
+    filme.title.toLowerCase().includes(termo)
+  );
+  renderFilmes(filtrados);
 });
