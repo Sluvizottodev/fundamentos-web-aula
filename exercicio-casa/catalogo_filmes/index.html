@@ -4,28 +4,56 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style-index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
-  <script src="main.js" defer></script>
   <title>Catálogo de Filmes</title>
 </head>
 <body>
   <header>
-    <h1>🎬 Catálogo de Filmes</h1>
-    <input type="text" id="searchInput" placeholder="Buscar por título..." aria-label="Buscar filmes">
+    <div class="header-content">
+      <div class="logo-section">
+        <i class="fas fa-film"></i>
+        <h1>Catálogo de Filmes</h1>
+      </div>
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Buscar por título..." aria-label="Buscar filmes">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="filmes" aria-label="Lista de Filmes"></section>
+    
+    <div class="load-more-container">
+      <button id="loadMoreBtn" class="btn-load-more" aria-label="Carregar mais filmes">
+        <i class="fas fa-chevron-down"></i>
+        Carregar mais filmes
+      </button>
+    </div>
   </main>
 
   <footer>
-    <h5>VOLTE SEMPRE!</h5>
-    <div class="redes-sociais">
-      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <div class="footer-content">
+      <p class="footer-text">Explore nosso catálogo de filmes e descubra seus favoritos</p>
+      <div class="redes-sociais">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Catálogo de Filmes.</p>
     </div>
   </footer>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>

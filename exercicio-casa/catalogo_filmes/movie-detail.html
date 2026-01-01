@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style-detail.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <title>Detalhes do Filme - Catálogo de Filmes</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo-section">
+          <i class="fas fa-film"></i>
+          <h1>Catálogo de Filmes</h1>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="movie-detail-container">
+        <button class="btn-back" id="backBtn" aria-label="Voltar ao catálogo">
+          <i class="fas fa-arrow-left"></i>
+          Voltar
+        </button>
+
+        <div class="movie-hero">
+          <div class="movie-poster-section">
+            <div class="poster-wrapper">
+              <img
+                id="moviePoster"
+                src=""
+                alt="Cartaz do filme"
+                class="detail-poster-image"
+              />
+              <div class="movie-rating">
+                <i class="fas fa-star"></i>
+                <span id="ratingValue">0.0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="movie-header-info">
+            <h1 id="movieTitle">Carregando...</h1>
+
+            <div class="movie-meta">
+              <span class="meta-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="movieReleaseDate">-</span>
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-hourglass-half"></i>
+                <span id="movieDuration">-</span>
+              </span>
+              <span class="meta-item">
+                <i class="fas fa-globe"></i>
+                <span id="movieLanguage">-</span>
+              </span>
+            </div>
+            <div class="movie-genres" id="movieGenres">
+              <span class="genre-badge">Carregando...</span>
+            </div>
+
+            <div class="movie-synopsis">
+              <p id="movieOverview">Carregando sinopse...</p>
+            </div>
+            <div class="movie-actions">
+              <button
+                class="btn-action btn-favorite"
+                id="favoriteBtn"
+                aria-label="Adicionar aos favoritos"
+              >
+                <i class="far fa-heart"></i>
+                Favoritar
+              </button>
+              <button
+                class="btn-action btn-share"
+                id="shareBtn"
+                aria-label="Compartilhar este filme"
+              >
+                <i class="fas fa-share-alt"></i>
+                Compartilhar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-details-section">
+          <h2>
+            <i class="fas fa-chart-bar"></i>
+            Informações Principais
+          </h2>
+
+          <div class="details-grid">
+            <div class="detail-card">
+              <h4>Orçamento</h4>
+              <p id="movieBudget">-</p>
+            </div>
+            <div class="detail-card">
+              <h4>Receita</h4>
+              <p id="movieRevenue">-</p>
+            </div>
+            <div class="detail-card">
+              <h4>País</h4>
+              <p id="movieCountry">-</p>
+            </div>
+            <div class="detail-card">
+              <h4>Avaliações</h4>
+              <p id="movieVotes">-</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="movie-credits-section"
+          id="directoresSection"
+          style="display: none"
+        >
+          <h2>
+            <i class="fas fa-users"></i>
+            Direção & Elenco
+          </h2>
+
+          <div class="cast-list" id="movieCast"></div>
+        </div>
+        <div
+          class="movie-companies-section"
+          id="companhiasSection"
+          style="display: none"
+        >
+          <h2>
+            <i class="fas fa-building"></i>
+            Produtoras
+          </h2>
+
+          <div class="companies-list" id="movieCompanies"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <div class="redes-sociais">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+        <p class="footer-copy">
+          &copy; 2026 Catálogo de Filmes. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <div id="loadingSpinner"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/movie-detail.js" defer></script>
+  </body>
+</html>
